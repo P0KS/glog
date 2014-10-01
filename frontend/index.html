@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="glog">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Glog, the glider club timesheet</title>
+    
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular.min.js" defer></script>
+    <script type="text/javascript" src="lib/angular-resource.min.js" defer></script>
+    <script type="text/javascript" src="lib/angular-route.min.js" defer></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="lib/jquery-2.1.0.min.js" defer></script>
+    
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script type="text/javascript" src="lib/ui-bootstrap-tpls-0.11.0.min.js" defer></script>
+    
+    <!-- Styles -->
+    <link href="css/app.css" rel="stylesheet">
+    
+    <!-- JS -->
+    <script type="text/javascript" src="js/app.js" defer></script>
+    <script type="text/javascript" src="js/controllers.js" defer></script>
+
+  </head>
+  <body>
+      <nav class="navbar navbar-default" role="navigation" ng-controller="HeaderController">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ active: isActive('/')}"><a class="navbar-brand"  href="#/">Flight sheet</a></li>
+            <li ng-class="{ active: isActive('/pilots')}"><a href="#/pilots">Pilots</a></li>
+            <li ng-class="{ active: isActive('/aircraft')}"><a href="#/aircraft">Aircraft</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Filter">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+              <li ng-controller="ClockController"><a href="#" title="{{ currentDate | date:'Z'}} zulu">{{ currentDate | date:'yyyy-MM-dd'}}&nbsp;<strong>{{clock | date:'HH:mm:ss'}}</strong></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-class="{ active: isActive('/settings')}"><a href="#/settings">Settings</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Close flight sheet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+      
+      
+     <div ng-view class="page-content"></div>
+      
+      
+      
+  </body>
+</html>
